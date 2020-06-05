@@ -1,14 +1,13 @@
+import 'react-native-gesture-handler'
 import React from 'react'
 import { ThemeProvider } from 'emotion-theming'
-import { View, Text } from 'react-native'
+import { RootNavigator } from 'navigation'
 import theme from './theme'
 
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
-            <View>
-                <Text>Hello World</Text>
-            </View>
+            <RootNavigator />
         </ThemeProvider>
     )
 }
