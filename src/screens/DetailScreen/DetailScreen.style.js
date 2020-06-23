@@ -1,100 +1,132 @@
 import styled from '@emotion/native'
+import Animated from 'react-native-reanimated'
+import { HEADER_MAX_HEIGHT } from 'consts'
 
 const Root = styled.View(({ theme }) => ({
     flex: 1,
-    backgroundColor: theme.colors.white
-}))
-
-const ImageContainer = styled.View({
-    flex: 1.4,
     position: 'relative'
-})
-
-const Poster = styled.View({
-    flex: 1,
-    borderBottomLeftRadius: 50,
-    overflow: 'hidden'
-})
-
-const PosterImage = styled.Image({
-    flex: 1,
-    resizeMode: 'cover',
-    width: undefined,
-    height: undefined
-})
-
-const RatingsTab = styled.View(({ theme }) => ({
-    paddingTop: 20,
-    paddingRight: 32,
-    paddingBottom: 20,
-    paddingLeft: 60,
-    backgroundColor: theme.colors.white,
-    position: 'absolute',
-    right: 0,
-    bottom: -45,
-    // left: 122,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderTopLeftRadius: 50,
-    borderBottomLeftRadius: 50,
-    ...theme.boxShadow.one
 }))
 
-const Tab = styled.View({
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between'
+const ScrollContainer = styled.ScrollView(({ theme }) => ({
+    flex: 1
+}))
 
-
+const ScrollViewContent = styled.View({
+    marginTop: HEADER_MAX_HEIGHT + 20,
+    paddingLeft: 16,
+    paddingRight: 16
 })
 
-const TabTextPrimary = styled.Text(({ theme }) => ({
-    ...theme.typography.medium,
-    fontSize: 16,
-    lineHeight: 19,
-    paddingTop: 5
+const Title = styled.Text(({ theme }) => ({
+    ...theme.typography.bold,
+    fontSize: 32,
+    marginBottom: 8
 }))
 
-const TabTextSecodary = styled.Text(({ theme }) => ({
-    ...theme.typography.regular,
-    fontSize: 12,
-    lineHeight: 15
-}))
-
-const RatingBox = styled.View(({ theme }) => ({
-    backgroundColor: theme.colors.green,
-    paddingLeft: 5,
-    paddingRight: 5,
-    height: 24,
+const Chip = styled.View(({ theme }) => ({
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingRight: 14,
+    paddingLeft: 14,
+    borderRadius: 50,
+    borderWidth: 1.4,
+    borderColor: theme.colors.grey,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 2
+    marginRight: 8
 }))
 
-const RatingBoxText = styled.Text(({ theme }) => ({
+const ChipText = styled.Text(({ theme }) => ({
     ...theme.typography.medium,
-    color: theme.colors.white,
-    lineHeight: 17,
-    fontSize: 14,
-    textAlign: 'center',
-
+    fontSize: 14
 }))
 
-const Content = styled.View({
-    flex: 2
+const ChipList = styled.FlatList(({ theme }) => ({
+    backgorundColor: '#333',
+    marginBottom: 48
+}))
+
+const InfoBox = styled.View(({ theme }) => ({
+    flexDirection: 'row',
+    marginBottom: 20
+}))
+
+const InfoText = styled.Text(({ theme }) => ({
+    ...theme.typography.regular,
+    fontSize: 14,
+    marginRight: 30
+}))
+
+const PlotBox = styled.View({
+    marginBottom: 48
 })
+
+const PlotTitle = styled.Text(({ theme }) => ({
+    ...theme.typography.medium,
+    fontSize: 24,
+    marginBottom: 16
+}))
+
+const PlotText = styled.Text(({ theme }) => ({
+    ...theme.typography.regular,
+    fontSize: 16,
+    lineHeight: 29
+}))
+
+const CastBox = styled.View({
+    marginBottom: 30
+})
+
+const CastTitle = styled.Text(({ theme }) => ({
+    ...theme.typography.medium,
+    fontSize: 24,
+    marginBottom: 16
+}))
+
+const CastCardRoot = styled.View(({ theme }) => ({
+    width: 80,
+    alignItems: 'center',
+    margin: 8
+}))
+
+const CardImageHolder = styled.View({
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginBottom: 12,
+    backgroundColor: '#888'
+})
+
+const CastNameText = styled.Text(({ theme }) => ({
+    ...theme.typography.medium,
+    fontSize: 16,
+    textAlign: 'center'
+}))
+
+const CastRoleText = styled.Text(({ theme }) => ({
+    ...theme.typography.medium,
+    fontSize: 16,
+    textAlign: 'center',
+    color: theme.colors.greyDark
+}))
 
 export {
     Root,
-    ImageContainer,
-    Poster,
-    PosterImage,
-    RatingsTab,
-    Tab,
-    TabTextPrimary,
-    TabTextSecodary,
-    RatingBox,
-    RatingBoxText,
-    Content
+    ScrollContainer,
+    ScrollViewContent,
+    Title,
+    ChipList,
+    Chip,
+    ChipText,
+    InfoBox,
+    InfoText,
+    PlotBox,
+    PlotTitle,
+    PlotText,
+    CastBox,
+    CastTitle,
+    CastCardRoot,
+    CardImageHolder,
+    CastNameText,
+    CastRoleText
 }

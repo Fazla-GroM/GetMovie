@@ -3,8 +3,10 @@ export default {
         black: '#12153D',
         white: '#fff',
         grey: 'rgba(18, 21, 61, 0.15)',
+        greyDark: '#9A9BB3',
         pink: '#FE6D8E',
-        green: '#51CF66'
+        green: '#51CF66',
+        background: '#E5E5E5'
     },
     boxShadow: {
         one: {
