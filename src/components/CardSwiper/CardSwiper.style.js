@@ -17,7 +17,8 @@ const TitleBox = styled.View({})
 const Text = styled.Text(({ secondary, theme }) => ({
     color: secondary ? theme.colors.textSecondary : theme.colors.textPrimary,
     ...(secondary ? theme.fontWeight.regular : theme.fontWeight.semiBold),
-    fontSize: secondary ? 14 : 18
+    fontSize: secondary ? 14 : 18,
+    marginTop: secondary ? theme.setSpacing(1) : null
 }))
 
 const Row = styled.View(({ theme }) => ({
