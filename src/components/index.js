@@ -1,3 +1,6 @@
 export * from './Fab'
 export * from './HomeHeader'
 export * from './DetailsHeader'
+export * from './Card'
+export * from './CardSwiper'
+export * from './Header'

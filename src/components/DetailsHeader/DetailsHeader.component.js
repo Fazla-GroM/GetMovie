@@ -110,36 +110,7 @@ const DetailsHeader = ({ scrollValue, navigation }) => {
         inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
         outputRange: [0, 0, 4]
     })
-    return (
-        <AnimatedHeaderRoot
-            style={{ height: headerHeight, elevation: appBarElevation, backgroundColor: headerBackgroundColor }}>
-            <HeaderImageHolder>
-                <AnimatedHeaderImage
-                    style={[{ opacity: imageOpacity, transform: [{ translateY: imageTranslate }] }]}
-                    source={require('assets/images/ford_poster.jpg')}
-                />
-            </HeaderImageHolder>
-            <HeaderBar>
-                <BackBtnHolder>
-                    <Fab
-                        small
-                        onPress={() => navigation.goBack()}
-                        activeOpacity={0.6}
-                        style={{ backgroundColor: backButtonBackground }}>
-                        <BackIcon fill={fillColor} />
-                    </Fab>
-                </BackBtnHolder>
-                <HeaderBtnBox style={{ bottom: buttonsTranslate, width: buttonBoxWidth, right: buttonBoxRight }}>
-                    <Fab small style={{ backgroundColor, elevation: fabShadow }}>
-                        <Sasa fill={fillColor} />
-                    </Fab>
-                    <Fab small style={{ backgroundColor, borderRadius: 50, overflow: 'hidden', elevation: fabShadow }}>
-                        <Sasa fill={fillColor} />
-                    </Fab>
-                </HeaderBtnBox>
-            </HeaderBar>
-        </AnimatedHeaderRoot>
-    )
+    return null
 }
 
 DetailsHeader.propTypes = {

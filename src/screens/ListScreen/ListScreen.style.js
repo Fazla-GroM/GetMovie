@@ -1,33 +1,27 @@
 import styled from '@emotion/native'
-import Animated from 'react-native-reanimated'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { HEADER_MIN_HEIGHT } from 'consts'
 
-const Root = styled.View({
+const Root = styled.SafeAreaView(({ theme }) => ({
     flex: 1,
-    backgroundColor: '#fff'
-})
-
-const AnimatedButton = Animated.createAnimatedComponent(TouchableOpacity)
-
-const Fab = styled(AnimatedButton)({
-    width: 40,
-    height: 40,
-    backgroundColor: '#666',
-    borderRadius: 50
-})
-
-const One = styled.View(({ theme }) => ({
-    flex: 1,
-    backgroundColor: '#222'
+    backgroundColor: theme.colors.background
 }))
 
-const Two = styled.View(({ theme }) => ({
-    flex: 1,
-    backgroundColor: '#555'
+const ScrollView = styled.ScrollView({
+    flex: 1
+})
+
+const HeaderRoot = styled.SafeAreaView(({ theme }) => ({
+    backgroundColor: theme.colors.background
 }))
 
-const Three = styled.View({
-    flex: 6,
-    backgroundColor: '#999'
-})
-export { Root, Fab, One, Two, Three }
+const Header = styled.View(({ theme }) => ({
+    height: HEADER_MIN_HEIGHT,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: theme.setSpacing(1),
+    backgroundColor: theme.colors.background
+}))
+
+export { Root, HeaderRoot, Header, ScrollView }

@@ -1,26 +1,46 @@
 import React, { useRef } from 'react'
-import { ScrollView } from 'react-native'
+import { useWindowDimensions } from 'react-native'
+import { useTheme } from 'emotion-theming'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated from 'react-native-reanimated'
-import { DetailsHeader } from 'components'
-import {
-    Root,
-    ScrollContainer,
-    ScrollViewContent,
-    Title,
-    Chip,
-    ChipText,
-    InfoBox,
-    InfoText,
-    PlotBox,
-    PlotTitle,
-    PlotText,
-    CastBox,
-    CastTitle,
-    CastCardRoot,
-    CardImageHolder,
-    CastNameText,
-    CastRoleText
-} from './DetailScreen.style'
+import { interpolateColor } from 'react-native-redash'
+import { Card, CardSwiper } from 'components'
+import movieImage from 'assets/images/ford_poster.jpg'
+import { HEADER_MIN_HEIGHT } from 'consts'
+import { Root, Image, ImageHolder, ScrollView, ScrollViewContent } from './DetailScreen.style'
+
+const fakeData = [
+    {
+        id: 1,
+        title: 'Film 1',
+        image: movieImage
+    },
+    {
+        id: 2,
+        title: 'Film 2',
+        image: movieImage
+    },
+    {
+        id: 3,
+        title: 'Film 3',
+        image: movieImage
+    },
+    {
+        id: 4,
+        title: 'Film 4',
+        image: movieImage
+    },
+    {
+        id: 5,
+        title: 'Film 5',
+        image: movieImage
+    },
+    {
+        id: 6,
+        title: 'Film 6',
+        image: movieImage
+    }
+]
 
 const fakeCast = [
     {
@@ -52,49 +72,51 @@ const fakeChips = [
 ]
 
 const DetailScreen = ({ navigation }) => {
+    const { height } = useWindowDimensions()
+    const { top: safeAreaInsetTop } = useSafeAreaInsets()
+    const theme = useTheme()
     const scrollValue = useRef(new Animated.Value(0)).current
+    const IMAGE_HEIGHT = height / 2.2
+    const IMAGE_MAX_HEIGHT = IMAGE_HEIGHT
+    const IMAGE_MIN_HEIGHT = HEADER_MIN_HEIGHT + safeAreaInsetTop
+    const IMAGE_SCROLL_DISTANCE = IMAGE_MAX_HEIGHT - IMAGE_MIN_HEIGHT
+
+    const headerHeight = scrollValue.interpolate({
+        inputRange: [0, IMAGE_SCROLL_DISTANCE],
+        outputRange: [IMAGE_MAX_HEIGHT, IMAGE_MIN_HEIGHT],
+        extrapolate: 'clamp'
+    })
+
+    const backgroundColor = interpolateColor(scrollValue, {
+        inputRange: [0, IMAGE_SCROLL_DISTANCE],
+        outputRange: ['transparent', theme.colors.background]
+    })
+
+    const opacity = scrollValue.interpolate({
+        inputRange: [0, IMAGE_SCROLL_DISTANCE / 2, IMAGE_SCROLL_DISTANCE],
+        outputRange: [1, 1, 0],
+        extrapolate: 'clamp'
+    })
+
+    const translateY = scrollValue.interpolate({
+        inputRange: [0, IMAGE_SCROLL_DISTANCE],
+        outputRange: [0, -50],
+        extrapolate: 'clamp'
+    })
 
     return (
         <Root>
-            <ScrollContainer
-                scrollEventThrottle={100}
-                onScroll={e => scrollValue.setValue(e.nativeEvent.contentOffset.y)}>
-                <ScrollViewContent>
-                    <Title>Ford v Ferrari</Title>
-                    <InfoBox>
-                        <InfoText>2019</InfoText>
-                        <InfoText>PG-13</InfoText>
-                        <InfoText>2h 32min</InfoText>
-                    </InfoBox>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 48 }}>
-                        {fakeChips.map(chip => (
-                            <Chip key={chip.id}>
-                                <ChipText>{chip.title}</ChipText>
-                            </Chip>
-                        ))}
-                    </ScrollView>
-                    <PlotBox>
-                        <PlotTitle>Plot Summary</PlotTitle>
-                        <PlotText>
-                            American car designer Carroll Shelby and driver Kn Miles battle corporate interference and
-                            the laws of physics to build a revolutionary race car for Ford in order.
-                        </PlotText>
-                    </PlotBox>
-                    <CastBox>
-                        <CastTitle>Cast & Crew</CastTitle>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            {fakeCast.map(item => (
-                                <CastCardRoot key={item.id}>
-                                    <CardImageHolder />
-                                    <CastNameText>{item.name}</CastNameText>
-                                    <CastRoleText>{item.role}</CastRoleText>
-                                </CastCardRoot>
-                            ))}
-                        </ScrollView>
-                    </CastBox>
+            <ScrollView scrollEventThrottle={100} onScroll={e => scrollValue.setValue(e.nativeEvent.contentOffset.y)}>
+                <ScrollViewContent marginTop={IMAGE_HEIGHT}>
+                    <CardSwiper Card={Card} data={fakeData} />
+                    <CardSwiper Card={Card} data={fakeData} />
+                    <CardSwiper Card={Card} data={fakeData} />
+                    <CardSwiper Card={Card} data={fakeData} />
                 </ScrollViewContent>
-            </ScrollContainer>
-            <DetailsHeader scrollValue={scrollValue} navigation={navigation} />
+            </ScrollView>
+            <ImageHolder height={headerHeight} backgroundColor={backgroundColor}>
+                <Image source={movieImage} opacity={opacity} translateY={translateY} height={IMAGE_MAX_HEIGHT} />
+            </ImageHolder>
         </Root>
     )
 }

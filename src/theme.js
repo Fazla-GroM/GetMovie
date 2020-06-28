@@ -1,13 +1,23 @@
+import { PADDING_BASE } from 'consts'
+
 export default {
     colors: {
         black: '#12153D',
         white: '#fff',
         grey: 'rgba(18, 21, 61, 0.15)',
         greyDark: '#9A9BB3',
-        pink: '#FE6D8E',
         green: '#51CF66',
-        background: '#E5E5E5'
+        purple: '#8D90D6',
+        pink: '#FF2C55',
+        background: '#1D1E27',
+        elevation: '#2F315E',
+        textPrimary: 'rgba(255,255,255,0.87)',
+        textSecondary: 'rgba(255,255,255,0.60)'
     },
+    setSpacing: increment => PADDING_BASE * increment,
+
+    borderRadius: 4,
+
     boxShadow: {
         one: {
             shadowColor: '#000',
@@ -22,21 +32,18 @@ export default {
         }
     },
 
-    typography: {
-        bold: {
-            fontFamily: 'Montserrat-SemiBold',
-            fontWeight: '600',
-            color: '#12153D'
+    fontWeight: {
+        semiBold: {
+            // fontFamily: 'Montserrat-SemiBold',
+            fontWeight: '600'
         },
         medium: {
-            fontFamily: 'Montserrat-Medium',
-            fontWeight: '500',
-            color: '#12153D'
+            // fontFamily: 'Montserrat-Medium',
+            fontWeight: '500'
         },
         regular: {
-            fontFamily: 'Montserrat-Regular',
-            fontWeight: '400',
-            color: '#9A9BB3'
+            // fontFamily: 'Montserrat-Regular',
+            fontWeight: '400'
         }
     }
 }

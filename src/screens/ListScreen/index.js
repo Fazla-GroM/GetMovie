@@ -1,1 +1,4 @@
-export { default as ListScreen } from './ListScreen'
+import ListScreen from './ListScreen'
+import ListHeader from './ListHeader.component'
+
+export { ListHeader, ListScreen }

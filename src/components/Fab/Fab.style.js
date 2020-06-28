@@ -1,10 +1,7 @@
 import styled from '@emotion/native'
 import Animated from 'react-native-reanimated'
-import { BaseButton } from 'react-native-gesture-handler'
 
-const AnimatedButton = Animated.createAnimatedComponent(BaseButton)
-
-const TouchableRoot = styled(AnimatedButton)(({ small, theme }) => ({
+const Root = styled.TouchableHighlight(({ small, theme }) => ({
     width: small ? 40 : 56,
     height: small ? 40 : 56,
     alignItems: 'center',
@@ -12,4 +9,4 @@ const TouchableRoot = styled(AnimatedButton)(({ small, theme }) => ({
     borderRadius: 20
 }))
 
-export { TouchableRoot }
+export { Root }

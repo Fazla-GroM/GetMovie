@@ -13,8 +13,8 @@ const HomeHeader = ({ navigation }) => {
             <Fab small style={{ backgroundColor: '#fff' }} onPress={() => navigation.toggleDrawer()}>
                 <MenuIcon fill={theme.colors.black} />
             </Fab>
-            <Fab small style={{ backgroundColor: '#fff' }}>
-                <SearchIcon fill={theme.colors.black} onPress={() => navigation.navigate('Details')} />
+            <Fab small style={{ backgroundColor: '#fff' }} onPress={() => navigation.navigate('Details')}>
+                <SearchIcon fill={theme.colors.black}  />
             </Fab>
         </Root>
     )

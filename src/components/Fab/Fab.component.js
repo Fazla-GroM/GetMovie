@@ -1,23 +1,28 @@
-import React from 'react'
+import React, { Children } from 'react'
 import PropTypes from 'prop-types'
-import { TouchableRoot } from './Fab.style'
+import { Root } from './Fab.style'
 
-const Fab = ({ activeOpacity, small, children, ...rest }) => {
+const Fab = ({ activeOpacity, small, underlayColor, onPress, children }) => {
     return (
-        <TouchableRoot small={small} activeOpacity={activeOpacity} {...rest}>
-            {children}
-        </TouchableRoot>
+        <Root activeOpacity={activeOpacity} underlayColor={underlayColor} small={small} onPress={onPress}>
+            {Children.only(children)}
+        </Root>
+        // <TouchableRoot small={small} activeOpacity={activeOpacity} {...rest}>
+        //     {children}
+        // </TouchableRoot>
     )
 }
 
 Fab.propTypes = {
     activeOpacity: PropTypes.number,
-    small: PropTypes.bool
+    small: PropTypes.bool,
+    underlayColor: PropTypes.string
 }
 
 Fab.defaultProps = {
-    activeOpacity: 0.6,
-    small: false
+    activeOpacity: 0.8,
+    small: false,
+    underlayColor: 'rgba(255, 44, 85, 0.4)'
 }
 
 export default Fab

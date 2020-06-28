@@ -3,6 +3,7 @@ import { HEADER_MIN_HEIGHT } from 'consts'
 
 const Root = styled.View(({ theme }) => ({
     height: HEADER_MIN_HEIGHT,
+    paddingTop: 60,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
