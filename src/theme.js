@@ -12,7 +12,8 @@ export default {
         background: '#1D1E27',
         elevation: '#2F315E',
         textPrimary: 'rgba(255,255,255,0.87)',
-        textSecondary: 'rgba(255,255,255,0.60)'
+        textSecondary: 'rgba(255,255,255,0.60)',
+        divider: 'rgba(255,255,255,0.30)'
     },
     setSpacing: increment => PADDING_BASE * increment,
 
@@ -33,6 +34,9 @@ export default {
     },
 
     fontWeight: {
+        bold: {
+            fontWeight: '700'
+        },
         semiBold: {
             // fontFamily: 'Montserrat-SemiBold',
             fontWeight: '600'

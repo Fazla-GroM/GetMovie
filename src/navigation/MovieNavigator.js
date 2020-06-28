@@ -1,8 +1,21 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ListScreen, ListHeader, DetailScreen, DetailHeader } from 'screens'
+import { MovieHomeController, MovieDetailsController } from 'controllers'
 
 const Stack = createStackNavigator()
+
+const HomeScreen = props => (
+    <MovieHomeController {...props}>
+        <ListScreen />
+    </MovieHomeController>
+)
+
+const DetailsScreen = props => (
+    <MovieDetailsController {...props}>
+        <DetailScreen />
+    </MovieDetailsController>
+)
 
 const HomeNavigator = () => {
     return (
@@ -12,7 +25,7 @@ const HomeNavigator = () => {
                 options={{
                     header: props => <ListHeader {...props} />
                 }}
-                component={ListScreen}
+                component={HomeScreen}
             />
             <Stack.Screen
                 name="Details"
@@ -20,7 +33,7 @@ const HomeNavigator = () => {
                     headerTransparent: true,
                     header: props => <DetailHeader {...props} />
                 }}
-                component={DetailScreen}
+                component={DetailsScreen}
             />
         </Stack.Navigator>
     )

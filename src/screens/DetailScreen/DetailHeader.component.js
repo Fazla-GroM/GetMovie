@@ -8,14 +8,14 @@ import { HeaderButtonHolder } from './DetailScreen.style'
 const DetailHeader = ({ navigation, ...rest }) => {
     return (
         <Header transparent>
-            <Fab small onPress={navigation.goBack}>
+            <Fab small onPress={navigation.goBack} style={{ backgroundColor: 'rgba(29, 30, 39, 0.2)' }}>
                 <BackIcon fill="#fff" />
             </Fab>
             <HeaderButtonHolder>
-                <Fab small onPress={navigation.goBack}>
+                <Fab small onPress={navigation.goBack} style={{ backgroundColor: 'rgba(29, 30, 39, 0.2)' }}>
                     <ShareIcon fill="#fff" />
                 </Fab>
-                <Fab small onPress={navigation.goBack}>
+                <Fab small onPress={navigation.goBack} style={{ backgroundColor: 'rgba(29, 30, 39, 0.2)' }}>
                     <LikeIcon fill="#fff" />
                 </Fab>
             </HeaderButtonHolder>

@@ -41,19 +41,11 @@ const fakeData = [
 const ListScreen = props => {
     return (
         <Root>
-            {/* <Header>
-                <Fab small onPress={() => alert('pressed')}>
-                    <MenuIcon fill="#fff" />
-                </Fab>
-                <Fab small onPress={() => alert('pressed')}>
-                    <SearchIcon fill="#fff" />
-                </Fab>
-            </Header> */}
             <ScrollView>
-                <CardSwiper Card={Card} data={fakeData} />
-                <CardSwiper Card={Card} data={fakeData} />
-                <CardSwiper Card={Card} data={fakeData} />
-                <CardSwiper Card={Card} data={fakeData} />
+                <CardSwiper title="Top Rated" titleSub="Best of the best" Card={Card} data={fakeData} />
+                <CardSwiper title="Upcoming" titleSub="Planning is everything" Card={Card} data={fakeData} />
+                <CardSwiper title="Popular" titleSub="See what others like to watch" Card={Card} data={fakeData} />
+                <CardSwiper title="In Cinemas" titleSub="Call your buddies and go" Card={Card} data={fakeData} />
             </ScrollView>
         </Root>
     )

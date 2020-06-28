@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { FlatList, StatusBar } from 'react-native'
+import { FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import PropTypes from 'prop-types'
 import { useTheme } from 'emotion-theming'
@@ -14,7 +14,7 @@ const Button = props => {
     )
 }
 
-const CardSwiper = ({ Card, ...rest }) => {
+const CardSwiper = ({ Card, title, titleSub, ...rest }) => {
     const theme = useTheme()
     const navigation = useNavigation()
 
@@ -22,11 +22,10 @@ const CardSwiper = ({ Card, ...rest }) => {
 
     return (
         <Root>
-            <StatusBar barStyle="light-content" />
             <Toolbar>
                 <TitleBox>
-                    <Text>Neki Teks</Text>
-                    <Text secondary>ja sam mali text</Text>
+                    <Text>{title}</Text>
+                    <Text secondary>{titleSub}</Text>
                 </TitleBox>
                 <Button onPress={() => alert('PRESS')} />
             </Toolbar>
@@ -48,7 +47,9 @@ const CardSwiper = ({ Card, ...rest }) => {
 }
 
 CardSwiper.propTypes = {
-    Card: PropTypes.elementType.isRequired
+    Card: PropTypes.elementType.isRequired,
+    title: PropTypes.string.isRequired,
+    titleSub: PropTypes.string.isRequired
 }
 
 export default CardSwiper

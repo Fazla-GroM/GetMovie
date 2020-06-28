@@ -8,7 +8,7 @@ const Card = ({ title, image, onPress }) => {
         <TouchableOpacity activeOpacity={0.4} onPress={onPress}>
             <Root>
                 <Image source={image} />
-                <Gradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,.2)', 'rgba(0,0,0,0.8)']}>
+                <Gradient colors={['rgba(29, 30, 39, 0)', 'rgba(29, 30, 39, 0.2)', 'rgba(29, 30, 39, 0.8)']}>
                     <Title>{title}</Title>
                 </Gradient>
             </Root>

@@ -1,7 +1,7 @@
 import styled from '@emotion/native'
 
 const Root = styled.View(({ theme }) => ({
-    marginVertical: theme.setSpacing(2)
+    marginVertical: theme.setSpacing(1)
 }))
 
 const Toolbar = styled.View(({ theme }) => ({

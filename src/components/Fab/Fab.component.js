@@ -2,9 +2,9 @@ import React, { Children } from 'react'
 import PropTypes from 'prop-types'
 import { Root } from './Fab.style'
 
-const Fab = ({ activeOpacity, small, underlayColor, onPress, children }) => {
+const Fab = ({ activeOpacity, small, underlayColor, onPress, children, style }) => {
     return (
-        <Root activeOpacity={activeOpacity} underlayColor={underlayColor} small={small} onPress={onPress}>
+        <Root activeOpacity={activeOpacity} style={style} underlayColor={underlayColor} small={small} onPress={onPress}>
             {Children.only(children)}
         </Root>
         // <TouchableRoot small={small} activeOpacity={activeOpacity} {...rest}>
