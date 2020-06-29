@@ -38,14 +38,24 @@ const fakeData = [
     }
 ]
 
-const ListScreen = props => {
+const ListScreen = ({ data }) => {
     return (
         <Root>
             <ScrollView>
-                <CardSwiper title="Top Rated" titleSub="Best of the best" Card={Card} data={fakeData} />
-                <CardSwiper title="Upcoming" titleSub="Planning is everything" Card={Card} data={fakeData} />
-                <CardSwiper title="Popular" titleSub="See what others like to watch" Card={Card} data={fakeData} />
-                <CardSwiper title="In Cinemas" titleSub="Call your buddies and go" Card={Card} data={fakeData} />
+                <CardSwiper title="Top Rated" titleSub="Best of the best" Card={Card} data={data.topRatedMovies} />
+                <CardSwiper title="Upcoming" titleSub="Planning is everything" Card={Card} data={data.upcomingMovies} />
+                <CardSwiper
+                    title="Popular"
+                    titleSub="See what others like to watch"
+                    Card={Card}
+                    data={data.popularMovies}
+                />
+                <CardSwiper
+                    title="In Cinemas"
+                    titleSub="Call your buddies and go"
+                    Card={Card}
+                    data={data.nowPlayingMovies}
+                />
             </ScrollView>
         </Root>
     )
