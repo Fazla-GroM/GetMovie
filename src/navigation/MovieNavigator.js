@@ -3,8 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { ListScreen, ListHeader, DetailScreen, DetailHeader } from 'screens'
 import { MovieHomeController, MovieDetailsController } from 'controllers'
 
-const Stack = createStackNavigator()
-
 const HomeScreen = props => (
     <MovieHomeController {...props}>
         <ListScreen />
@@ -16,6 +14,8 @@ const DetailsScreen = props => (
         <DetailScreen />
     </MovieDetailsController>
 )
+
+const Stack = createStackNavigator()
 
 const HomeNavigator = () => {
     return (

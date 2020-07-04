@@ -1,17 +1,14 @@
 import React from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer'
-import { NavigationContainer } from '@react-navigation/native'
-import MovieNavigator from './MovieNavigator'
+import { createStackNavigator } from '@react-navigation/stack'
+import AppNavigator from './AppNavigator'
 
-const Drawer = createDrawerNavigator()
+const Stack = createStackNavigator()
 
 const RootNavigator = () => {
     return (
-        <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Home">
-                <Drawer.Screen name="Movies" component={MovieNavigator} />
-            </Drawer.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator headerMode="none">
+            <Stack.Screen name="App" component={AppNavigator} />
+        </Stack.Navigator>
     )
 }
 

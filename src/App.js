@@ -4,7 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { StatusBar } from 'react-native'
 import { ThemeProvider } from 'emotion-theming'
-import { RootNavigator } from 'navigation'
+import Navigation from 'navigation'
 import { store, persistor } from 'store'
 
 import theme from './theme'
@@ -15,7 +15,7 @@ const App = () => {
             <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider theme={theme}>
                     <StatusBar barStyle="light-content" />
-                    <RootNavigator />
+                    <Navigation />
                 </ThemeProvider>
             </PersistGate>
         </Provider>
