@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'remote-redux-devtools'
 import reducers from 'reducers'
 
 const middleware = [thunk]
-const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000 })
+const composeEnhancers = composeWithDevTools({ realtime: true })
 const store = createStore(reducers, composeEnhancers(applyMiddleware(...middleware)))
 const persistor = persistStore(store)
 

@@ -27,8 +27,9 @@ const TextBox = styled.View(({ theme }) => ({
 const Text = styled.Text(({ secondary, theme }) => ({
     color: secondary ? theme.colors.textSecondary : theme.colors.textPrimary,
     ...(secondary ? theme.fontWeight.regular : theme.fontWeight.semiBold),
-    fontSize: secondary ? 14 : 18,
-    textAlign: 'center'
+    fontSize: secondary ? 14 : 16,
+    textAlign: 'center',
+    marginTop: secondary ? theme.setSpacing(1) : null
 }))
 
 export { Root, ImageHolder, Image, TextBox, Text }

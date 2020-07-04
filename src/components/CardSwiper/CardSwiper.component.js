@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react'
-import { FlatList } from 'react-native'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-import PropTypes from 'prop-types'
 import { useTheme } from 'emotion-theming'
+import PropTypes from 'prop-types'
+import { FlatList } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
-import { Root, Toolbar, Row, TitleBox, Text } from './CardSwiper.style'
+import { Root, Row, Text, TitleBox, Toolbar } from './CardSwiper.style'
 
 const Button = props => {
     return (
@@ -18,8 +18,6 @@ const CardSwiper = ({ Card, title, titleSub, ...rest }) => {
     const theme = useTheme()
     const navigation = useNavigation()
 
-    const onPress = useCallback(() => navigation.navigate('Details'), [navigation])
-
     return (
         <Root>
             <Toolbar>
@@ -31,10 +29,10 @@ const CardSwiper = ({ Card, title, titleSub, ...rest }) => {
             </Toolbar>
             <FlatList
                 {...rest}
-                keyExtractor={item => item.id.toString()}
+                keyExtractor={(item, index) => item.id.toString() + index}
                 renderItem={({ item }) => (
                     <Row>
-                        <Card {...item} onPress={onPress} />
+                        <Card {...item} onPress={() => navigation.navigate('Details', { id: item.id })} />
                     </Row>
                 )}
                 horizontal
@@ -49,7 +47,12 @@ const CardSwiper = ({ Card, title, titleSub, ...rest }) => {
 CardSwiper.propTypes = {
     Card: PropTypes.elementType.isRequired,
     title: PropTypes.string.isRequired,
-    titleSub: PropTypes.string.isRequired
+    titleSub: PropTypes.string.isRequired,
+    onCardPress: PropTypes.func
+}
+
+CardSwiper.defaultProps = {
+    onCardPress: undefined
 }
 
 export default CardSwiper

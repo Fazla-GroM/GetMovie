@@ -5,7 +5,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated from 'react-native-reanimated'
 import { interpolateColor } from 'react-native-redash'
 import { Card, CastCard, CardSwiper, Chip } from 'components'
-import movieImage from 'assets/images/ford_poster.jpg'
 import { HEADER_MIN_HEIGHT } from 'consts'
 import {
     Root,
@@ -19,71 +18,10 @@ import {
     Text
 } from './DetailScreen.style'
 
-const fakeData = [
-    {
-        id: 1,
-        title: 'Film 1',
-        image: movieImage
-    },
-    {
-        id: 2,
-        title: 'Film 2',
-        image: movieImage
-    },
-    {
-        id: 3,
-        title: 'Film 3',
-        image: movieImage
-    },
-    {
-        id: 4,
-        title: 'Film 4',
-        image: movieImage
-    },
-    {
-        id: 5,
-        title: 'Film 5',
-        image: movieImage
-    },
-    {
-        id: 6,
-        title: 'Film 6',
-        image: movieImage
-    }
-]
-
-const fakeCast = [
-    {
-        id: '1',
-        name: 'James Mangold',
-        character: 'Director'
-    },
-    {
-        id: '2',
-        name: 'Matt Damon',
-        character: 'Caroll'
-    },
-    {
-        id: '3',
-        name: 'Christian Bale',
-        character: 'Ken Miles'
-    },
-    {
-        id: '4',
-        name: 'Caitriona Balfe',
-        character: 'Mollie'
-    }
-]
-
-const fakeChips = [
-    { id: '1', title: 'Action' },
-    { id: '2', title: 'Biography' },
-    { id: '3', title: 'Drama' }
-]
-
-const DetailScreen = ({ navigation }) => {
+const DetailScreen = ({ navigation, data }) => {
+    console.log(data)
     const { height } = useWindowDimensions()
-    const { top: safeAreaInsetTop } = useSafeAreaInsets()
+    const { top: safeAreaInsetTop, bottom: safeAreaInsetBottom } = useSafeAreaInsets()
     const theme = useTheme()
     const scrollValue = useRef(new Animated.Value(0)).current
     const IMAGE_HEIGHT = height / 2.2
@@ -114,11 +52,11 @@ const DetailScreen = ({ navigation }) => {
         extrapolate: 'clamp'
     })
     return (
-        <Root>
+        <Root safeAreaInsetBottom={safeAreaInsetBottom}>
             <ScrollView scrollEventThrottle={100} onScroll={e => scrollValue.setValue(e.nativeEvent.contentOffset.y)}>
                 <ScrollViewContent marginTop={IMAGE_HEIGHT}>
                     <Container>
-                        <Title>Im a Movie</Title>
+                        <Title>{data.title}</Title>
                     </Container>
                     <RNScrollView
                         horizontal
@@ -127,38 +65,59 @@ const DetailScreen = ({ navigation }) => {
                         contentContainerStyle={{
                             paddingHorizontal: theme.setSpacing(1)
                         }}>
-                        {fakeChips.map(chip => (
-                            <Chip text={chip.title} key={chip.id} />
+                        {data?.genres?.map(chip => (
+                            <Chip text={chip.name} key={chip.id} />
                         ))}
                     </RNScrollView>
                     <Container border row>
                         <Box rightBorder>
                             <Text secondary>Length</Text>
-                            <Text spacing>139 min</Text>
+                            <Text spacing>{data.runtime} min</Text>
                         </Box>
                         <Box>
                             <Text secondary>Language</Text>
-                            <Text spacing>English</Text>
+                            {data?.spoken_languages?.map(lang => (
+                                <Text spacing key={lang.name}>
+                                    {lang.name}
+                                </Text>
+                            ))}
                         </Box>
                         <Box leftBorder>
                             <Text secondary>Year</Text>
-                            <Text spacing>2003</Text>
+                            <Text spacing>{data.release_date}</Text>
                         </Box>
                     </Container>
                     <Container>
                         <Text>Storyline</Text>
                         <Text secondary spacing style={{ lineHeight: 24 }}>
-                            A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression
-                            into a shocking new form of therapy. Their concept catches on, with underground fight clubs
-                            forming in every town, until an eccentric gets in the way and ignites an out-of-control
-                            spiral toward oblivion
+                            {data.overview}
                         </Text>
                     </Container>
-                    <CardSwiper title="Cast" titleSub="Find out who is who" Card={CastCard} data={fakeCast} />
+                    <CardSwiper
+                        title="Cast"
+                        titleSub="Find out who is who"
+                        Card={CastCard}
+                        data={data?.credits?.cast}
+                    />
+                    {data.collection && (
+                        <CardSwiper
+                            title={data.collection.name}
+                            titleSub="sdd"
+                            Card={Card}
+                            data={data.collection.parts}
+                        />
+                    )}
                 </ScrollViewContent>
             </ScrollView>
             <ImageHolder height={headerHeight} backgroundColor={backgroundColor}>
-                <Image source={movieImage} opacity={opacity} translateY={translateY} height={IMAGE_MAX_HEIGHT} />
+                <Image
+                    source={{
+                        uri: `https://image.tmdb.org/t/p/w780${data.backdrop_path}`
+                    }}
+                    opacity={opacity}
+                    translateY={translateY}
+                    height={IMAGE_MAX_HEIGHT}
+                />
             </ImageHolder>
         </Root>
     )

@@ -5,7 +5,8 @@ import {
     POPULAR_MOVIES,
     NOW_PLAYING_MOVIES,
     TOP_RATED_MOVIES,
-    UPCOMING_MOVIES
+    UPCOMING_MOVIES,
+    COLLECTION
 } from 'react-native-dotenv'
 
 const SET_SINGLE = 'GETMOVIE/MOVIES/SET_SINGLE'
@@ -40,6 +41,35 @@ const INITIAL_STATE = {
         totalPages: 0,
         page: 0,
         results: []
+    }
+}
+
+export const getSingleMovie = id => async dispatch => {
+    try {
+        const res = await fetch(
+            `${API_URL}${SINGLE_MOVIE}/${id}?api_key=${API_KEY}&language=en-US&append_to_response=videos,images,credits,reviews,external_ids`
+        )
+        const movieData = await res.json()
+        let collectionData
+        try {
+            if (movieData.belongs_to_collection) {
+                const collection = await fetch(
+                    `${API_URL}${COLLECTION}/${movieData.belongs_to_collection.id}?api_key=${API_KEY}&language=en-US`
+                )
+                collectionData = await collection.json()
+            }
+        } finally {
+            dispatch({
+                type: SET_SINGLE,
+                payload: {
+                    ...movieData,
+                    collection: collectionData || null
+                }
+            })
+        }
+    } catch (err) {
+        // TODO: handle Errors
+        throw new Error('Whoops', err)
     }
 }
 
@@ -113,6 +143,13 @@ export const getNowPlayingMovies = page => async dispatch => {
 
 const movieReducer = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {
+        case SET_SINGLE:
+            return {
+                ...state,
+                movie: {
+                    ...payload
+                }
+            }
         case SET_POPULAR:
             return {
                 ...state,

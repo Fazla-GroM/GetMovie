@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Root, Image, Gradient, Title } from './Card.style'
 
-const Card = ({ title, image, poster_path, onPress }) => {
+const Card = ({ title, poster_path, onPress }) => {
     return (
         <TouchableOpacity activeOpacity={0.4} onPress={onPress}>
             <Root>
@@ -24,12 +25,12 @@ const Card = ({ title, image, poster_path, onPress }) => {
 
 Card.propTypes = {
     title: PropTypes.string,
-    image: PropTypes.number
+    poster_path: PropTypes.string
 }
 
 Card.defaultProps = {
     title: undefined,
-    image: undefined
+    poster_path: undefined
 }
 
 export default Card

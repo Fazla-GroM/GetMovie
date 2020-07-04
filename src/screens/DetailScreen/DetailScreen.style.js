@@ -2,10 +2,11 @@ import styled from '@emotion/native'
 import Animated from 'react-native-reanimated'
 import LinearGradient from 'react-native-linear-gradient'
 
-const Root = styled.View(({ theme }) => ({
+const Root = styled.View(({ safeAreaInsetBottom, theme }) => ({
     flex: 1,
     backgroundColor: theme.colors.background,
-    position: 'relative'
+    position: 'relative',
+    paddingBottom: safeAreaInsetBottom
 }))
 
 const HeaderButtonHolder = styled.View(({ theme }) => ({

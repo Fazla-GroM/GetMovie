@@ -1,5 +1,5 @@
 import { cloneElement, useCallback, useEffect } from 'react'
-import { useDispatch, useSelector, batch } from 'react-redux'
+import { useDispatch, useSelector, batch, shallowEqual } from 'react-redux'
 import { getPopularMovies, getNowPlayingMovies, getTopRatedMovies, getUpcomingMovies } from 'reducers'
 
 const moviesSelector = state => ({
@@ -11,19 +11,18 @@ const moviesSelector = state => ({
 
 const MovieHomeController = ({ children, ...rest }) => {
     const dispatch = useDispatch()
-    const data = useSelector(moviesSelector)
+    const data = useSelector(moviesSelector, shallowEqual)
 
-    const getPopular = useCallback(() => dispatch(getPopularMovies())[dispatch])
-
-    const getUpcoming = useCallback(() => dispatch(getUpcomingMovies())[dispatch])
-
-    const getTopRated = useCallback(() => dispatch(getTopRatedMovies())[dispatch])
-
-    const getNowPlaying = useCallback(() => dispatch(getNowPlayingMovies())[dispatch])
+    const getAllMovies = useCallback(() => {
+        dispatch(getPopularMovies())
+        dispatch(getUpcomingMovies())
+        dispatch(getTopRatedMovies())
+        dispatch(getNowPlayingMovies())
+    }, [dispatch])
 
     useEffect(() => {
         batch(() => {
-            getPopular(), getNowPlaying(), getTopRated(), getUpcoming()
+            getAllMovies()
         })
     }, [])
 

@@ -1,15 +1,19 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
-import movieImage from 'assets/images/ford_poster.jpg'
 import { TouchableOpacity } from 'react-native'
 import { Root, ImageHolder, Image, Text, TextBox } from './CastCard.style'
 
-const CastCard = ({ name, character, onPress, activeOpacity }) => {
+const CastCard = ({ name, character, profile_path, onPress, activeOpacity }) => {
     return (
         <TouchableOpacity onPress={onPress} activeOpacity={activeOpacity}>
             <Root>
                 <ImageHolder>
-                    <Image source={movieImage} />
+                    <Image
+                        source={{
+                            uri: `https://image.tmdb.org/t/p/w185${profile_path}`
+                        }}
+                    />
                 </ImageHolder>
                 <TextBox>
                     <Text>{character}</Text>
@@ -23,12 +27,14 @@ const CastCard = ({ name, character, onPress, activeOpacity }) => {
 CastCard.propTypes = {
     name: PropTypes.string,
     character: PropTypes.string,
+    profile_path: PropTypes.string,
     activeOpacity: PropTypes.number
 }
 
 CastCard.defaultProps = {
     name: undefined,
     character: undefined,
+    profile_path: undefined,
     activeOpacity: 0.6
 }
 
