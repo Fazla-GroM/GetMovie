@@ -1,8 +1,8 @@
 const SET_USER = 'GETMOVIE/USER/SET_USER'
 
 const INITIAL_STATE = {
-    name: 'User',
-    isLogedIn: true
+    name: '',
+    isLoggedIn: false
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
