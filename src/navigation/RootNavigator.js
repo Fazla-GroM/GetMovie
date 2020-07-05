@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useUser } from 'hooks'
-import { SignInScreen } from 'screens'
+import { LandingScreen, SignUpScreen } from 'screens'
 import AppNavigator from './AppNavigator'
 
 const Stack = createStackNavigator()
@@ -12,9 +12,12 @@ const RootNavigator = () => {
     return (
         <Stack.Navigator headerMode="none">
             {user.isLoggedIn ? (
-                <Stack.Screen name="App" component={AppNavigator} />
+                <Stack.Screen name="AppScreen" component={AppNavigator} />
             ) : (
-                <Stack.Screen name="SignIn" component={SignInScreen} />
+                <>
+                    <Stack.Screen name="LandingScreen" component={LandingScreen} />
+                    <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+                </>
             )}
         </Stack.Navigator>
     )

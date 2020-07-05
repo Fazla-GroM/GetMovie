@@ -1,3 +1,4 @@
 export * from './ListScreen'
 export * from './DetailScreen'
-export * from './SignInScreen'
+export * from './LandingScreen'
+export * from './SignUpScreen'
