@@ -59,5 +59,9 @@
 		<string>Montserrat-Regular.ttf</string>
 		<string>Montserrat-SemiBold.ttf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>GetMovie wants to use PhotoGallery for profile picture</string>
+	<key>NSCameraUsageDescription</key>
+    <string>GetMovie wants to use Camera for profile picture</string>
 </dict>
 </plist>
