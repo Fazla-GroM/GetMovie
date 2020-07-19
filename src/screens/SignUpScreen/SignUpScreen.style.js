@@ -17,7 +17,7 @@ const Gradient = styled(LinearGradient)(({ theme }) => ({
     justifyContent: 'center'
 }))
 
-const Container = styled.View(({ theme }) => ({
+const Container = styled.KeyboardAvoidingView(({ theme }) => ({
     width: '70%',
     height: '60%',
     justifyContent: 'space-between'

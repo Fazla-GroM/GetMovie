@@ -1,25 +1,55 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { Platform, View } from 'react-native'
 import { useTheme } from 'emotion-theming'
 import { Button, TextInput } from 'components'
 import bg from 'assets/images/movie_poster.jpg'
-import IOSForward from 'assets/icons/arrow_forward_ios-black-24dp.svg'
-import AndroidForward from 'assets/icons/arrow_forward-black-24dp.svg'
+import SendIcon from 'assets/icons/send-24dp.svg'
 import { Root, ImageBackground, Gradient, Container, Box, Text, Bar } from './SignUpScreen.style'
 
+const INITIAL_STATE = {
+    fullName: '',
+    eMail: '',
+    password: ''
+}
+
 const SignUpScreen = () => {
-    const { OS } = Platform
+    const [formValue, setFormValue] = useState(INITIAL_STATE)
     const theme = useTheme()
+
+    const handleFormChange = useCallback(
+        (text, name) => {
+            setFormValue(currentVal => ({ ...currentVal, [name]: text }))
+        },
+        [setFormValue]
+    )
 
     return (
         <Root>
             <ImageBackground source={bg}>
                 <Gradient colors={['rgba(29, 30, 39, 0.8)', 'rgba(29, 30, 39, 0.3)', 'rgba(29, 30, 39, 0.8)']}>
-                    <Container>
+                    <Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                         <View style={{ flex: 3 }}>
-                            <TextInput spacing />
-                            <TextInput spacing />
-                            <TextInput spacing />
+                            <TextInput
+                                spacing
+                                label="Full Name"
+                                name="fullName"
+                                value={formValue.fullName}
+                                setValue={handleFormChange}
+                            />
+                            <TextInput
+                                spacing
+                                label="Email"
+                                name="eMail"
+                                value={formValue.eMail}
+                                setValue={handleFormChange}
+                            />
+                            <TextInput
+                                spacing
+                                label="Password"
+                                name="password"
+                                value={formValue.password}
+                                setValue={handleFormChange}
+                            />
                         </View>
                         <View style={{ flex: 2 }}>
                             <Box>
@@ -31,7 +61,11 @@ const SignUpScreen = () => {
                                 </View>
                             </Box>
                         </View>
-                        <Button text="Submit" onPress={() => alert('pressed')} />
+                        <Button
+                            text="Submit"
+                            endAdornment={<SendIcon fill={theme.colors.white} />}
+                            onPress={() => alert('pressed')}
+                        />
                     </Container>
                 </Gradient>
             </ImageBackground>
