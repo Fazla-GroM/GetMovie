@@ -9,6 +9,7 @@ export default {
         green: '#51CF66',
         purple: '#8D90D6',
         pink: '#FF2C55',
+        pinkTransparent: 'rgba(255, 44, 85, 0.1)',
         background: '#1D1E27',
         elevation: '#2F315E',
         textPrimary: 'rgba(255,255,255,0.87)',
