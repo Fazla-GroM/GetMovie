@@ -5,7 +5,7 @@ import user from './userReducer'
 import movies from './movieReducer'
 
 export * from './movieReducer'
-// export * from './userReducer'
+export * from './userReducer'
 
 const persistConfig = {
     // Root

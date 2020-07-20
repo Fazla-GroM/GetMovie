@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { Platform, View } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { setUser } from 'reducers'
 import { useTheme } from 'emotion-theming'
 import { Button, TextInput } from 'components'
 import bg from 'assets/images/movie_poster.jpg'
@@ -15,6 +17,9 @@ const INITIAL_STATE = {
 const SignUpScreen = () => {
     const [formValue, setFormValue] = useState(INITIAL_STATE)
     const theme = useTheme()
+    const dispatch = useDispatch()
+
+    const handleSubmit = useCallback(() => dispatch(setUser(formValue)), [dispatch, formValue])
 
     const handleFormChange = useCallback(
         (text, name) => {
@@ -64,7 +69,7 @@ const SignUpScreen = () => {
                         <Button
                             text="Submit"
                             endAdornment={<SendIcon fill={theme.colors.white} />}
-                            onPress={() => alert('pressed')}
+                            onPress={handleSubmit}
                         />
                     </Container>
                 </Gradient>
